@@ -22,6 +22,7 @@ const Navbar = () => {
     const hanldeSeachGlobal = () =>{
         dispatch(fetchNewsGlobal(inputGlobal))
         navigate(`/${inputGlobal}`)
+        setInputGlobal('')
     }
 
     const handleNavbarScroll = () =>{

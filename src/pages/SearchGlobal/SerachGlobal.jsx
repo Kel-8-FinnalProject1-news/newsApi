@@ -12,7 +12,7 @@ const SerachGlobal = () => {
     <div>
       <HeaderNews name={`${param.src}`} />
     </div>
-    {
+    { data && 
       data.length !== 0 ? (
         <div className="justify-center block sm:flex flex-wrap">
         {data.map((item, i)=>{

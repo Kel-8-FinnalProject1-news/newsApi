@@ -574,8 +574,8 @@ html {
   margin-top: 1.25rem;
 }
 
-.mb-6 {
-  margin-bottom: 1.5rem;
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .-mt-5 {
@@ -600,10 +600,6 @@ html {
 
 .mr-2 {
   margin-right: 0.5rem;
-}
-
-.mb-10 {
-  margin-bottom: 2.5rem;
 }
 
 .block {
