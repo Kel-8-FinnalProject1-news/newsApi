@@ -1,16 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import newsIndoensiaReducer from './reducer/NewsIndonesia/newsSlice';
-import newsCovid19Reducer from "./reducer/NewsCovid19/NewsCovid19";
-import NewsProgrammingReducer from "./reducer/NewsProgramming/NewsProgrammingSlice";
-import postSaveReducer from './reducer/SaveContent/SaveContent';
-import newsGlobalReducer from './reducer/SearchNewsSlice/SearchNewsSlice';
+
+import {LoginSlice, NewsCovid19Slice, NewsGlobalSlice, NewsIndonesiaSlice, NewsProgrammingSlice, SaveContentSlice} from './reducer'
 
 export const store = configureStore({
     reducer : {
-        NewsIndonesiaSlice : newsIndoensiaReducer,
-        newsProgramingSlice : NewsProgrammingReducer,
-        newsCovid19 : newsCovid19Reducer,
-        postSave : postSaveReducer,
-        newsGlobal : newsGlobalReducer
+        NewsIndonesiaSlice :NewsIndonesiaSlice ,
+        newsProgramingSlice :NewsProgrammingSlice ,
+        newsCovid19 : NewsCovid19Slice,
+        postSave : SaveContentSlice,
+        newsGlobal : NewsGlobalSlice,
+        LoginReducer : LoginSlice
     }
 })

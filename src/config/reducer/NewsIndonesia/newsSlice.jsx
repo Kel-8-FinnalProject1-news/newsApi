@@ -19,6 +19,6 @@ const newsIndoensiaSlice = createSlice({
     }
 })
 
-export const selectAllUsers = (state) => state.news;
+export const selectAllnews = (state) => state.news;
 
 export default newsIndoensiaSlice.reducer
