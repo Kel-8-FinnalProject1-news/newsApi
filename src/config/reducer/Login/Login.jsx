@@ -21,7 +21,11 @@ export const fetchDataUsers = createAsyncThunk('getData/users', async (data) =>{
 const LoginSlice = createSlice({
     name: 'login',
     initialState,
-    reducers : {},
+    reducers : {
+        logout: () =>{
+            localStorage.removeItem('token')
+        },
+    },
     extraReducers(builder) {
         builder.addCase(fetchDataUsers.fulfilled , (state, action)=>{
            return action.payload
@@ -30,4 +34,5 @@ const LoginSlice = createSlice({
 })
 
 export const selectAllUsers = (state) => state.login;
+export const {logout} = LoginSlice.actions;
 export default LoginSlice.reducer

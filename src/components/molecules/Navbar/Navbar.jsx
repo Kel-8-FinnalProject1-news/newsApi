@@ -5,24 +5,31 @@ import { Close, Humberger} from '../../../assets'
 import { fetchNewsGlobal } from '../../../config/reducer/SearchNewsSlice/SearchNewsSlice'
 import { Button, Input } from '../../atoms'
 import {Menubar} from './Navbar.hook'
+import { Islogin } from '../../../Utils/Condition/Islogin'
+import { logout } from '../../../config/reducer/Login/Login'
 
 const Navbar = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [isfalse, setIsfalse] = useState(false)
-
     const [isOpen, setIsOpen] = useState(false)
     const HandleOpen = () =>{
         setIsOpen(!isOpen)
     }
-
+    
     const [inputGlobal, setInputGlobal] = useState('');
     const HandleInputGlobal = e => setInputGlobal(e.target.value);
+    const isLogin = Islogin();
 
     const hanldeSeachGlobal = () =>{
         dispatch(fetchNewsGlobal(inputGlobal))
         navigate(`/${inputGlobal}`)
         setInputGlobal('')
+    }
+
+    const logginOut = () => {
+        dispatch(logout())
+        window.location.reload()
     }
 
     const handleNavbarScroll = () =>{
@@ -56,6 +63,12 @@ const Navbar = () => {
                             </div>
                         )
                     })}
+                    {isLogin? (
+                        <div className='py-2 shadow-lg' onClick={()=> logginOut()} >
+                        <h1>logout</h1>
+                    </div>
+                    ): <></>}
+                    
                 </div>
                 <img src={Close} alt="huberger" className='h-5  mx-auto '  onClick={HandleOpen} />
         </div>
@@ -70,7 +83,14 @@ const Navbar = () => {
                     </div>
                    )
                 })}
+                {isLogin? (
+                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> logginOut()} >
+                    <h1>logout</h1>
+                </div>
+                ): <></>}
+                
             </div>
+            
            <div className='flex'>
             <Input placeholder="Cari Berita" HandleInput={HandleInputGlobal}  className="px-4 md:w-96 rounded-lg font-bold text-black text-xl capitalize"/>
             <div className='mx-2'/>

@@ -2,6 +2,9 @@ import { Line, Table } from '../../components'
 
 const Saved = () => {
   const data = Object.keys(localStorage)
+  const savedNews = data.filter((item) =>  item !== 'token')
+  
+  
   return (
     <div>
         <table className='w-full text-left text-2xl mt-10'>
@@ -13,7 +16,7 @@ const Saved = () => {
                 <th className='w-1/12'>action</th> 
             </tr>
           </thead>
-          {data?.map((item, i)=>{
+          {savedNews?.map((item, i)=>{
             const data = JSON.parse(localStorage.getItem(item))
              if(typeof data === 'object'){
               return(
