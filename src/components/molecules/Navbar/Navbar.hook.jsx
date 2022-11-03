@@ -14,6 +14,10 @@ const Menubar = [
     {
         name: 'Saved',
         link: '/saved'
+    },
+    {
+        name: 'Saved',
+        link: '/saved'
     }
 ]
 

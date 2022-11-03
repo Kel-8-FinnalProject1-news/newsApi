@@ -5,8 +5,11 @@ import { Close, Humberger} from '../../../assets'
 import { fetchNewsGlobal } from '../../../config/reducer/SearchNewsSlice/SearchNewsSlice'
 import { Button, Input } from '../../atoms'
 import {Menubar} from './Navbar.hook'
+import {logout} from '../../../config/reducer/Login/Login'
+import {Islogin} from './../../../Utils/Condition/Islogin'
 
 const Navbar = () => {
+    const condition = Islogin()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [isfalse, setIsfalse] = useState(false)
@@ -25,6 +28,11 @@ const Navbar = () => {
         setInputGlobal('')
     }
 
+    const logginOut = () => {
+        dispatch(logout())
+        window.location.reload()
+    }
+
     const handleNavbarScroll = () =>{
         if(window.scrollY >= 10){
             setIsfalse(true)
@@ -34,6 +42,7 @@ const Navbar = () => {
     }
     window.addEventListener('scroll', handleNavbarScroll)
 
+    
   return (
     <div className={`w-full fixed bg-black text-white p-3 shadow-3xl ${isfalse ? 'bg-opacity-80 bg-black shadow-white shadow-sm' : ''}`}>
         <div className='sm:hidden'>
@@ -56,6 +65,11 @@ const Navbar = () => {
                             </div>
                         )
                     })}
+                     {condition  ? (
+                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> logginOut()} >
+                    <h1>logout</h1>
+                </div>
+                ): <></>}
                 </div>
                 <img src={Close} alt="huberger" className='h-5  mx-auto '  onClick={HandleOpen} />
         </div>
@@ -70,6 +84,11 @@ const Navbar = () => {
                     </div>
                    )
                 })}
+                 {condition? (
+                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> logginOut()} >
+                    <h1>logout</h1>
+                </div>
+                ): <></>}
             </div>
            <div className='flex'>
             <Input placeholder="Cari Berita" HandleInput={HandleInputGlobal}  className="px-4 md:w-96 rounded-lg font-bold text-black text-xl capitalize"/>

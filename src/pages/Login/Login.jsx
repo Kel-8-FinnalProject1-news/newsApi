@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router'
 import { LogoNews } from '../../assets'
 import { Button, HeaderNews, Input, Label } from '../../components'
 import { fetchDataUsers } from '../../config/reducer/Login/Login'
 
 const Login = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const news = useSelector((state)=> state.LoginReducer)
   const [data, setuser] = useState({
     username: '',
     password: ''
   })
-
 
   const handleInput =(e)=>{
     setuser({ ...data, [e.target.name]: e.target.value })
@@ -33,7 +29,7 @@ const Login = () => {
             <Label name={'Email'} className={'text-slate-500'}/>
             <Input className={'border-2 outline-none rounded-2xl'} placeholder='Email...' HandleInput={handleInput} name='username' value={data.username}/>
             <Label name={'Password'} className={'text-slate-500 mt-6'}/>
-            <Input className={'border-2 outline-none rounded-2xl'} placeholder='Password...' HandleInput={handleInput} name='password' value={data.password}/>
+            <Input className={'border-2 outline-none rounded-2xl'} placeholder='Password...' type="password" HandleInput={handleInput} name='password' value={data.password}/>
            
             <Button  name={'Login'} className={'mt-10'} handleClik={handleLogin}/>
         </div>
