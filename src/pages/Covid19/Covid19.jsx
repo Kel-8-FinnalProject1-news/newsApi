@@ -1,16 +1,9 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { CardNews, HeaderNews } from '../../components'
-import { fetchNewsCovid19 } from '../../config/reducer/NewsCovid19/NewsCovid19'
+import { useCovid19 } from './useCovid19'
 
 const Covid19 = () => {
-  const news = useSelector((state) => state.newsCovid19.articles)
-  const dispatch = useDispatch()
-  
-  useEffect(()=>{
-    dispatch(fetchNewsCovid19())
-  },[dispatch])
-
+ const {news} = useCovid19()
   return (
   <div>
     <div>

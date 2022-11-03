@@ -1,15 +1,8 @@
-import React, { useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
 import { CardNews, HeaderNews } from '../../components'
-import { fetchNewsPrograming, filterNewsPrograming } from '../../config/reducer/NewsProgramming/NewsProgrammingSlice'
-
+import {usePrograming} from './usePrograming'
 const Programing = () => {
-  const news = useSelector((state)=> state.newsProgramingSlice.articles)
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchNewsPrograming())
-  }, [dispatch])
+ const {news} = usePrograming()
 
   return (
     <div>

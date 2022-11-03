@@ -1,21 +1,18 @@
-import {  useSelector } from 'react-redux'
-import { useParams } from 'react-router'
 import { CardNews, HeaderNews } from '../../components'
 import NotFound from '../NotFound/NotFound'
-
+import {useSearchGlobal} from './useSearchGlobal'
 const SerachGlobal = () => {
-    const data = useSelector((state)=> state.newsGlobal.articles)
-    let param = useParams()
+   const {news, params} = useSearchGlobal()
 
   return (
     <div>
     <div>
-      <HeaderNews name={`${param.src}`} />
+      <HeaderNews name={`${params.src}`} />
     </div>
-    { data && 
-      data.length !== 0 ? (
+    { news && 
+      news.length !== 0 ? (
         <div className="justify-center block sm:flex flex-wrap">
-        {data.map((item, i)=>{
+        {news.map((item, i)=>{
           return(
             <CardNews key={i} data={item} />
             )

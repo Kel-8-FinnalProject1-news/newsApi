@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = [];
+const initialState = {
+    articles: []
+}
 
 export const fetchNewsGlobal = createAsyncThunk('news/Global', async (search)=>{
     const response = await axios.get(`${import.meta.env.VITE_BASE_URL}everything?q=${search}&apiKey=${import.meta.env.VITE_API_KEY}`);
@@ -14,7 +16,7 @@ const newsGlobalSlice = createSlice({
     reducers : {},
     extraReducers(builder){
         builder.addCase(fetchNewsGlobal.fulfilled, (state, action)=>{
-            return action.payload;
+            state.articles = action.payload.articles
         })
     }
 })
