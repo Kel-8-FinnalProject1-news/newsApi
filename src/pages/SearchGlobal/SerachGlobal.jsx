@@ -1,6 +1,7 @@
 import { CardNews, HeaderNews } from '../../components'
 import NotFound from '../NotFound/NotFound'
 import {useSearchGlobal} from './useSearchGlobal'
+
 const SerachGlobal = () => {
    const {news, params} = useSearchGlobal()
 
