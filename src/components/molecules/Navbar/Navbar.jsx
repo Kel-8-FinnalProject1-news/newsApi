@@ -1,47 +1,19 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router'
 import { Close, Humberger} from '../../../assets'
-import { fetchNewsGlobal } from '../../../config/reducer/SearchNewsSlice/SearchNewsSlice'
 import { Button, Input } from '../../atoms'
-import {Menubar} from './Navbar.hook'
-import {logout} from '../../../config/reducer/Login/Login'
+import {Menubar, useNavbar} from './useNavbar'
 import {Islogin} from './../../../Utils/Condition/Islogin'
 
 const Navbar = () => {
     const condition = Islogin()
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const [isfalse, setIsfalse] = useState(false)
-
-    const [isOpen, setIsOpen] = useState(false)
-    const HandleOpen = () =>{
-        setIsOpen(!isOpen)
-    }
-
-    const [inputGlobal, setInputGlobal] = useState('');
-    const HandleInputGlobal = e => setInputGlobal(e.target.value);
-
-    const hanldeSeachGlobal = () =>{
-        dispatch(fetchNewsGlobal(inputGlobal))
-        navigate(`/${inputGlobal}`)
-        setInputGlobal('')
-    }
-
-    const logginOut = () => {
-        dispatch(logout())
-        window.location.reload()
-    }
-
-    const handleNavbarScroll = () =>{
-        if(window.scrollY >= 10){
-            setIsfalse(true)
-        } else{
-            setIsfalse(false)
-        }
-    }
-    window.addEventListener('scroll', handleNavbarScroll)
-
+    const {
+        isfalse, 
+        isOpen, 
+        handleInputGlobal, 
+        handleSearchGlobal, 
+        HandleOpen, 
+        handleLogout} = useNavbar()
     
   return (
     <div className={`w-full fixed bg-black text-white p-3 shadow-3xl ${isfalse ? 'bg-opacity-80 bg-black shadow-white shadow-sm' : ''}`}>
@@ -54,9 +26,9 @@ const Navbar = () => {
             <div className='flex-col flex justify-center cursor-pointer'>
                 <div className='text-center mb-5 font-bold capitalize mobile:text-xl miniTablet:text-2xl'>
                     <div className='miniTablet:flex justify-center '>
-                        <Input HandleInput={HandleInputGlobal} className=" rounded-xl px-4 font-bold text-black text-xl capitalize " placeholder="Cari Berita"/>
+                        <Input HandleInput={handleInputGlobal} className=" rounded-xl px-4 font-bold text-black text-xl capitalize " placeholder="Cari Berita"/>
                         <div className='mx-3 mobile:my-2 nol:py-2'/>
-                        <Button name="Cari" handleClik={hanldeSeachGlobal} />
+                        <Button name="Cari" handleClik={handleSearchGlobal} />
                     </div>
                     {Menubar.map((item, i)=>{
                         return(
@@ -66,7 +38,7 @@ const Navbar = () => {
                         )
                     })}
                      {condition  ? (
-                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> logginOut()} >
+                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> handleLogout()} >
                     <h1>logout</h1>
                 </div>
                 ): <></>}
@@ -85,15 +57,15 @@ const Navbar = () => {
                    )
                 })}
                  {condition? (
-                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> logginOut()} >
+                    <div className='py-2 shadow-lg mx-3 nol:h-12 cursor-pointer' onClick={()=> handleLogout()} >
                     <h1>logout</h1>
                 </div>
                 ): <></>}
             </div>
            <div className='flex'>
-            <Input placeholder="Cari Berita" HandleInput={HandleInputGlobal}  className="px-4 md:w-96 rounded-lg font-bold text-black text-xl capitalize"/>
+            <Input placeholder="Cari Berita" HandleInput={handleInputGlobal}  className="px-4 md:w-96 rounded-lg font-bold text-black text-xl capitalize"/>
             <div className='mx-2'/>
-            <Button name={"Cari"} handleClik={hanldeSeachGlobal}/></div>
+            <Button name={"Cari"} handleClik={handleSearchGlobal}/></div>
         </div>
     </div>
   )

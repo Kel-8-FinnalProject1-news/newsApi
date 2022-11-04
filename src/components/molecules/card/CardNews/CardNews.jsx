@@ -2,7 +2,15 @@ import { Button } from '../../../atoms'
 import { handleDataCard } from './useCard'
 
 const CardNews = ({data}) => {
-  const {authorfix, contentfix, descriptionFix, sourcefix,  urlfix,  isFalse,  handleRemove, handleSubmit} = handleDataCard(data)
+  const {
+    authorfix, 
+    contentfix, 
+    descriptionFix, 
+    sourcefix,  
+    urlfix,  
+    isFalse,  
+    handleRemove, 
+    handleSubmit} = handleDataCard(data)
 
   return (
       <div className='nol:w-full mobile:w-[360px] w-[36px] lg:w-[450px] mx-auto m-6'>
