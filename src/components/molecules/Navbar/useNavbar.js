@@ -65,7 +65,8 @@ const useNavbar = () => {
     handleInputGlobal, 
     handleSearchGlobal, 
     HandleOpen, 
-    handleLogout}
+    handleLogout, 
+    inputGlobal}
 }
 
 

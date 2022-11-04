@@ -1,21 +1,9 @@
 import { useEffect } from "react"
+import {Swal} from "../../../../Utils/Swal/Swal"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { addPostSave, removeSave } from "../../../../config/reducer/SaveContent/SaveContent"
 
-// const handleConditionNull = (source, setSources, title, setTitles, description, setDescriptions, url, setUrls, urlToImage, setUrlToImages, setIsFalse) =>{
-//       source ? setSources(source.name) : setSources('No Source')
-
-//       title ? setTitles(title) : setTitles('No Title')
-
-//       description ? setDescriptions(description) : setDescriptions('No Description')
-
-//       url ? setUrls(url) : setUrls('No Url')
-
-//       urlToImage ? setUrlToImages(urlToImage) : setUrlToImages('No Url To Image')
-
-//       localStorage.getItem(`${urlToImage}`) ? setIsFalse(true): setIsFalse(false)
-// }
 
 export const handleDataCard = (data) =>{
     const dispatch = useDispatch()
@@ -30,6 +18,7 @@ export const handleDataCard = (data) =>{
     let urlfix = url? url : lorem100;
     let titlefix = title? title : lorem100;
     let urlToImagefix = urlToImage? urlToImage : lorem100;
+    const {SwalSucces, SwalRemove} = Swal()
     
     const [datafix , setDataFix] = useState({
         sources : sourcefix,
@@ -51,13 +40,14 @@ export const handleDataCard = (data) =>{
         const {sources, descriptions,  titles, urlToImages, urls} = datafix
         dispatch(addPostSave(sources, descriptions, titles,urls, urlToImages))
         IsFalse(true)
+        SwalSucces()
     }
     
     const handleRemove =() => {
         const {sources, descriptions,  titles, urlToImages, urls} = datafix
         dispatch(removeSave(sources, descriptions, titles, urls, urlToImages))
         IsFalse(false)
-        
+        SwalRemove()
     }
     return {
         authorfix, 
